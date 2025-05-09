@@ -117,7 +117,7 @@ In this guided lab, we will install Active Directory Domain Services (AD DS) on 
 
 <h2>Active Directory User Provisioning and Group Policy Object Configuration completed!</h2>
 
-<b>We've successfully installed Active Directory on the domain controller VM, created OUs for organizational purposes, created a domain admin user account, and joined the client VM to the domain. In the next lab found [here](https://github.com/YohanLB09/Active-Directory-Deployment-and-Configuration), we'll create users in Powershell by running a script, and then manage the accounts and group policy.  Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
+<b>We've successfully installed Active Directory on the domain controller VM, created OUs for organizational purposes, created a domain admin user account, and joined the client VM to the domain. Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
 <br />
 <br />
 </p>

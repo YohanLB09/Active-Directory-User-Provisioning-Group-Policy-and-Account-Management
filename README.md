@@ -2,8 +2,8 @@
 <img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
 </p>
 
-<h1>Active Directory - Deployment and Configuration</h1>
-In this guided lab, we will install Active Directory Domain Services (AD DS) on the Server VM, create a new domain, establish an administrative user, and join the Client VM to the newly created domain.<br />
+<h1>Active Directory - User Provisioning and Group Policy Object Configuration</h1>
+In this guided lab, we will demonstrate how to enable Remote Desktop access for non-administrative users, automate user creation with PowerShell, and manage group policies. Additionally, we will cover account lockouts and log monitoring to simulate a real-life IT environment.<br />
 
 <br />This project is a continuation of [Active Directory: Deployment and Configuration](https://github.com/YohanLB09/Active-Directory-Deployment-and-Configuration), so this project picks up where we left off.<br />
 
@@ -117,7 +117,7 @@ In this guided lab, we will install Active Directory Domain Services (AD DS) on 
 
 <h2>Active Directory User Provisioning and Group Policy Object Configuration completed!</h2>
 
-<b>We've successfully installed Active Directory on the domain controller VM, created OUs for organizational purposes, created a domain admin user account, and joined the client VM to the domain. Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
+<b>We've successfully configured Remote Desktop for non-administrative users, automated user creation with PowerShell, and managed group policies. Additionally, we covered account lockouts and log monitoring to simulate a real-life IT environment! Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
 <br />
 <br />
 </p>

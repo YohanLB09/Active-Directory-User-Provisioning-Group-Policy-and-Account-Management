@@ -47,7 +47,7 @@ In this guided lab, we will install Active Directory Domain Services (AD DS) on 
 <h3>Step 2:</h3>
 
 <p>
-<img src="https://i.imgur.com/RWEPWGQ.png" height="100%" width="100%" alt="Configuration step"/>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
 

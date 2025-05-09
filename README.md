@@ -117,7 +117,7 @@ In this guided lab, we will demonstrate how to enable Remote Desktop access for 
 
 <h2>Active Directory User Provisioning and Group Policy Object Configuration completed!</h2>
 
-<b>We've successfully configured Remote Desktop for non-administrative users, automated user creation with PowerShell, and managed group policies. Additionally, we covered account lockouts and log monitoring to simulate a real-life IT environment! Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
+<b>We've successfully configured Remote Desktop for non-administrative users, automated user creation with PowerShell, and managed group policies. Additionally, we covered account lockouts and log monitoring to simulate a real-life IT environment. This marks the end of the Active Directory Lab serie! Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
 <br />
 <br />
 </p>

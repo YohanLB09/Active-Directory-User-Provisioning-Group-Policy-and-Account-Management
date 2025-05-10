@@ -40,9 +40,9 @@ You can find the PowerShell script for Step 2 [here.](https://github.com/joshmad
 <img src="https://i.imgur.com/itskafQ.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
-Login to the Client VM as the Domain admin user created previously (katy_ admin in my case) -> right-click on the Start menu, and click on "System" to access the properties -> "Remote Desktop" -> "Select users that can remotely access this PC" -> "Add" ->  type "Domain Users" -> click on "Check Names" -> "OK" -> "OK".
+-Login to the Client VM as the Domain admin user created previously (katy_ admin in my case) -> right-click on the Start menu, and click on "System" to access the properties -> "Remote Desktop" -> "Select users that can remotely access this PC" -> "Add" ->  type "Domain Users" -> click on "Check Names" -> "OK" -> "OK".
 
-  In this step, we logged in as the Domain admin user because administrative privileges are required to modify system-level settings, such as configuring who can remotely access the computer. Subsequently, we enabled Remote Desktop Connection for Domain users on the Client VM to allow non-administrative Domain users to remotely log into this specific client machine for accessing their newly created accounts and basic domain functionality. Domain users will be provisioned in the following step. 
+In this step, we logged in as the Domain admin user because administrative privileges are required to modify system-level settings, such as configuring who can remotely access the computer. Subsequently, we enabled Remote Desktop Connection for Domain users on the Client VM to allow non-administrative Domain users to remotely log into this specific client machine for accessing their newly created accounts and basic domain functionality. Domain users will be provisioned in the following step. 
 
 Keep in mind that in a real-world scenario, this step would typically be done centrally using Group Policy to apply to many systems simultaneously. In this lab, we configure it locally on the Client VM for simplicity and to demonstrate the fundamental permission setting.
 </p>
@@ -60,7 +60,6 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 -Login to the Domain controller VM as the Domain admin user -> navigate to "PowerShell ISE" as an admin -> click on "New Script" (top left) -> save the file on the "Desktop" -> Paste the content of the provided script in the script input window (see lab description section for the link to the PowerShell script) -> modify the number of account provisioning from 10000 to 1000 -> click on "Run Script (F5)"; you should see users being created on the PowerShell window.
 
 -Take note of the password in the script as we will need it in the Step 3.
-
 </p>
 <br />
 
@@ -69,7 +68,10 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 <img src="https://i.imgur.com/ge7kfUv.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+-Go to the "_EMPLOYEE" Organizational Unit (OU) in Active Directory Users and Computers (ADUC) to ensure that domain users are being provisioned. If you don't see the account being created, refresh the OU.
 
+Step 2 involves using a PowerShell script, run with Domain admin privileges on the Domain Controller VM, to automatically create multiple domain user accounts. The purpose is to efficiently generate a batch of users within the Active Directory (_EMPLOYEE OU), which will be used for testing remote access in the following step. Checking ADUC confirms the successful execution of the script and the creation of the new user accounts. 
+Do you think that this step would have also worked if we executed it on the Client VM as the Domain Admin user?
 </p>
 <br />
 
@@ -83,7 +85,9 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 <img src="https://i.imgur.com/KqwQLRc.png" height="30%" width="60%" alt="Configuration step"/>
 </p>
 <p>
+-Attempt to log into the Client VM with one of the accounts (use the password in the script to login).
 
+This step involves attempting to log into the Client VM using the credentials of one of the non-administrative domain users created in Step 2. The purpose is to verify that the newly provisioned user accounts are valid, can authenticate against the domain, and that the Remote Desktop access configured in Step 1 is working correctly for standard domain users. Successfully logging in confirms the end-to-end functionality of user provisioning and remote access setup. 
 </p>
 <br />
 

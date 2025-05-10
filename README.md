@@ -34,7 +34,7 @@ In this guided lab, we will demonstrate how to enable Remote Desktop access for 
 <h3>Step 1: Enable Remote Desktop Connection for Domain users on the Client VM</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/itskafQ.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
 Login to the Client VM as the Domain admin user created previously (katy_ admin in my case) -> right-click on the Start menu, and click on "System" to access the properties -> "Remote Desktop" -> "Select users that can remotely access this PC" -> "Add" ->  type "Domain Users" -> click on "Check Names" -> "OK" -> "OK".
@@ -51,7 +51,7 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 <h3>Step 2: Provision multiple Domain users</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/eZI1rtJ.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
 
@@ -60,7 +60,7 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/ge7kfUv.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
 
@@ -74,7 +74,7 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 <h3>Step 3: Test login as a Domain user</h3>
 
 <p>
-<img src="" height="30%" width="60%" alt="Configuration step"/>
+<img src="https://i.imgur.com/KqwQLRc.png" height="30%" width="60%" alt="Configuration step"/>
 </p>
 <p>
 

@@ -2,7 +2,7 @@
 <img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
 </p>
 
-<h1>Active Directory - User Provisioning and Group Policy Object Configuration</h1>
+<h1>Active Directory - User Provisioning, Remote Access, and Account Management</h1>
 In this guided lab, we will demonstrate how to enable Remote Desktop access for non-administrative users, automate user creation with PowerShell, and manage group policies. Additionally, we will cover account lockouts and log monitoring to simulate a real-life IT environment.<br />
 
 <br />This project is a continuation of [Active Directory: Deployment and Configuration](https://github.com/YohanLB09/Active-Directory-Deployment-and-Configuration), so this project picks up where we left off.<br />
@@ -126,7 +126,7 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 
 
 
-<h2>Active Directory User Provisioning and Group Policy Object Configuration completed!</h2>
+<h2>Active Directory - User Provisioning, Remote Access, and Account Management completed!</h2>
 
 <b>We've successfully configured Remote Desktop for non-administrative users, automated user creation with PowerShell, and managed group policies. Additionally, we covered account lockouts and log monitoring to simulate a real-life IT environment. This marks the end of the Active Directory Lab serie! Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
 <br />

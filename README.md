@@ -54,6 +54,9 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 <img src="https://i.imgur.com/eZI1rtJ.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+-Login to the Domain controller VM as the Domain admin user -> navigate to "PowerShell ISE" as an admin -> click on "New Script" (top left) -> save the file on the "Desktop" -> Paste the content of this [script]()in the script input window -> modify the number of account provisioning from 10000 to 1000 -> click on "Run Script (F5)"; you should see users being created on the PowerShell window.
+
+-Take note of the password in the script as we will need it in the Step 3.
 
 </p>
 <br />

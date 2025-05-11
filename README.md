@@ -3,7 +3,7 @@
 </p>
 
 <h1>Active Directory - User Provisioning, Group Policy, and Account Management</h1>
-In this guided lab, we will demonstrate how to enable Remote Desktop access for non-administrative users, automate user creation with PowerShell, and manage group policies. Additionally, we will cover account lockouts and log monitoring to simulate a real-life IT environment.<br />
+In this guided lab, we will demonstrate how to enable Remote Desktop access for non-administrative users, automate user creation with PowerShell, and manage group policies. Additionally, we will cover account lockouts, password reset, and log monitoring, to simulate a real-life IT environment.<br />
 
 <br />This project is a continuation of [Active Directory: Deployment and Configuration](https://github.com/YohanLB09/Active-Directory-Deployment-and-Configuration), so this project picks up where we left off.<br />
 <br />
@@ -89,7 +89,7 @@ Do you think that this step would have also worked if we executed it on the Clie
 <p>
 -Attempt to log into the Client VM with one of the accounts (use the password in the script to login).
 
-This step involves attempting to log into the Client VM using the credentials of one of the non-administrative domain users created in Step 2. The purpose is to verify that the newly provisioned user accounts are valid, can authenticate against the domain, and that the Remote Desktop access configured in Step 1 is working correctly for standard domain users. Successfully logging in confirms the end-to-end functionality of user provisioning and remote access setup. 
+Step 3 involves attempting to log into the Client VM using the credentials of one of the non-administrative domain users created in Step 2. The purpose is to verify that the newly provisioned user accounts are valid, can authenticate against the domain, and that the Remote Desktop access configured in Step 1 is working correctly for standard domain users. Successfully logging in confirms the end-to-end functionality of user provisioning and remote access setup. 
 </p>
 <br />
 
@@ -148,7 +148,7 @@ Step 4 involves configuring the Account Lockout Policy in Group Policy Managemen
 <p>
 -To verify the policy, you can use the rsop.msc (Resultant Set of Policy) tool on a client machine to see the applied settings.
 
-This step ensures that the Account Lockout Policy, configured on the Domain Controller, is immediately applied to the Client VM. Running gpupdate /force forces a refresh of all Group Policy settings on the client, overriding the default background refresh interval. Subsequently, using rsop.msc allows us to verify that the Account Lockout Policy settings have been successfully applied to the Client VM by displaying the resultant set of policies for the logged-on user and computer.
+Step 5 ensures that the Account Lockout Policy, configured on the Domain Controller, is immediately applied to the Client VM. Running gpupdate /force forces a refresh of all Group Policy settings on the client, overriding the default background refresh interval. Subsequently, using rsop.msc allows us to verify that the Account Lockout Policy settings have been successfully applied to the Client VM by displaying the resultant set of policies for the logged-on user and computer.
 </p>
 <br />
 
@@ -177,7 +177,7 @@ To unlock the account, log back in the Domain Controller VM as the Domain Admin 
 
 -Attempt to log back in the Client VM as the Domain user. It should be unlocked .
 
-This step serves to verify that the configured security measure against brute-force attacks on user accounts is functioning correctly. By intentionally failing to log in multiple times, you should trigger the account lockout, as indicated by an error message. Subsequently, the process of unlocking the account through the Domain Controller demonstrates the administrative control over user access and confirms the lockout policy can be reversed by authorized personnel. Finally, successfully logging in after unlocking confirms the account is no longer restricted.
+Step 6 serves to verify that the configured security measure against brute-force attacks on user accounts is functioning correctly. By intentionally failing to log in multiple times, you should trigger the account lockout, as indicated by an error message. Subsequently, the process of unlocking the account through the Domain Controller demonstrates the administrative control over user access and confirms the lockout policy can be reversed by authorized personnel. Finally, successfully logging in after unlocking confirms the account is no longer restricted.
 </p>
 <br />
 
@@ -196,7 +196,7 @@ This step serves to verify that the configured security measure against brute-fo
 
 -Log out of the Client VM.
 
-This step aims to verify that the password reset mechanism within the Active Directory environment is functioning correctly. By navigating to the Active Directory Users and Computers console on the Domain Controller, locating a specific domain user within the "_EMPLOYEE" OU, and then successfully resetting their password, you confirm that administrative password resets are being applied. Subsequently, logging into the Client VM with the newly set password validates that the changes made on the Domain Controller are being properly propagated and authenticated for domain users.
+Step 7 aims to verify that the password reset mechanism within the Active Directory environment is functioning correctly. By navigating to the Active Directory Users and Computers console on the Domain Controller, locating a specific domain user within the "_EMPLOYEE" OU, and then successfully resetting their password, you confirm that administrative password resets are being applied. Subsequently, logging into the Client VM with the newly set password validates that the changes made on the Domain Controller are being properly propagated and authenticated for domain users.
 </p>
 <br />
 
@@ -233,7 +233,7 @@ This step aims to verify that the password reset mechanism within the Active Dir
 
 -Log out of the Client VM.
 
-This step verifies the functionality of disabling and enabling domain user accounts within Active Directory. By disabling a specific user account in the Domain Controller and observing the inability to log in on the Client VM, you confirm that the disable operation is effective. Subsequently, re-enabling the account and successfully logging in validates the enable operation and the restoration of account access. This process ensures the administrator can effectively control user access to the domain resources.
+Step 8 verifies the functionality of disabling and enabling domain user accounts within Active Directory. By disabling a specific user account in the Domain Controller and observing the inability to log in on the Client VM, you confirm that the disable operation is effective. Subsequently, re-enabling the account and successfully logging in validates the enable operation and the restoration of account access. This process ensures the administrator can effectively control user access to the domain resources.
 
 FYI: Disabling the domain user's account will not be disconnect it right away. It will only prevent the user from logging in the next time they attempt to do so. The current session will remain active until the user logs out or the system is restarted.
 </p>
@@ -252,7 +252,7 @@ FYI: Disabling the domain user's account will not be disconnect it right away. I
 
 -Expand "Windows Logs" -> right-click on "Security" and select "Find" -> type "Audit Failure" and search for subsequent failed login attempts.
 
-This step aims to examine the security logs on the Client VM to observe records of failed login attempts by the domain user. By accessing the Event Viewer and filtering for "Audit Failure" entries within the Security logs, you can verify that attempts to log in are being recorded. This confirms that the system is correctly auditing and logging unsuccessful/successful authentication attempts, which is crucial for security monitoring and troubleshooting.
+Step 9 aims to examine the security logs on the Client VM to observe records of failed login attempts by the domain user. By accessing the Event Viewer and filtering for "Audit Failure" entries within the Security logs, you can verify that attempts to log in are being recorded. This confirms that the system is correctly auditing and logging unsuccessful/successful authentication attempts, which is crucial for security monitoring and troubleshooting.
 </p>
 <br />
 
@@ -261,7 +261,7 @@ This step aims to examine the security logs on the Client VM to observe records 
 
 <h2>Active Directory - User Provisioning, Group Policy, and Account Management completed!</h2>
 
-<b>We've successfully configured Remote Desktop for non-administrative users, automated user creation with PowerShell, and managed group policies. Additionally, we covered account lockouts and log monitoring to simulate a real-life IT environment. This marks the end of the Active Directory Lab serie! Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
+<b>We've successfully configured Remote Desktop for non-administrative users, automated user creation with PowerShell, and managed group policies. Additionally, we covered account lockouts, password reset and log monitoring to simulate a real-life IT environment. This marks the end of the Active Directory Lab serie! Remember to stop the VMs in the Azure Portal when not in use to manage costs effectively.</b>
 <br />
 <br />
 </p>

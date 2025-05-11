@@ -155,22 +155,29 @@ This step ensures that the Account Lockout Policy, configured on the Domain Cont
 
 
 
-<h3>Step 5:</h3>
+<h3>Step 6: Test Account Lockout Policy</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/xyBMxNn.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
-
+-Attempt to log in to a randomly chosen Domain user on the Client VM 6 times with a bad password. 
+After 6 failed logins, you should get an error pop-up window indicating that the account has been locked, proving that the Account Lockout Policies have been correctly applied.
 </p>
 <br />
 
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/3E7IRIk.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+To unlock the account, log back in the Domain Controller VM as the Domain Admin User -> navigate to the Active Directory Users and Computers Console -> right-click on the "_EMPLOYEE" OU, select "Find" -> enter the name of domain user -> click on "Find Now" -> double-click on the Domain user's name.
 
+-From within the Domain user's properties, navigate to the "Account" tab and check the box for where it says "Unlock account. This account is currently locked out on this Azure Directory Domain Controller" -> "Apply" -> "OK".
+
+-Attempt to log back in the Client VM as the Domain user. It should be unlocked .
+
+This step serves to verify that the configured security measure against brute-force attacks on user accounts is functioning correctly. By intentionally failing to log in multiple times, you should trigger the account lockout, as indicated by an error message. Subsequently, the process of unlocking the account through the Domain Controller demonstrates the administrative control over user access and confirms the lockout policy can be reversed by authorized personnel. Finally, successfully logging in after unlocking confirms the account is no longer restricted.
 </p>
 <br />
 

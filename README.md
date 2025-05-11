@@ -27,10 +27,12 @@ You can find the PowerShell script for Step 2 [here.](https://github.com/joshmad
 - Step 1: Enable Remote Desktop Connection for Domain users on the Client VM
 - Step 2: Provision multiple Domain users
 - Step 3: Test login as a Domain user
-- Step 4: 
-- Step 5: 
-- Step 6: 
-- Step 7: 
+- Step 4: Configure account lockout in Group Policy Management
+- Step 5: Update the Account Lockout Policy on the Client VM
+- Step 6: Test Account Lockout Policy
+- Step 7: Test the Password reset functionality
+- Step 8: Test Disabling and Re-enabling an account
+- Step 9: Observe the logs
 
 <h2>Project Walkthrough</h2>
 
@@ -94,7 +96,183 @@ This step involves attempting to log into the Client VM using the credentials of
 
 
 
-<h3>Step 4:</h3>
+<h3>Step 4: Configure account lockout in Group Policy Management</h3>
+
+<p>
+<img src="https://i.imgur.com/9p5mDN3.png" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+-From the Domain Controller VM, type the "Windows key" + "R" and run "gpmc.msc" to the access Group Policy Management Console.
+
+-In the Group Policy Management Console, expand the following:
+"Forest: mydomain.com" -> "Domains" -> "mydomain.com" -> "Group Policy Object".
+
+-Right-click on "Default Domain Policy" -> select "Edit". 
+</p>
+<br />
+
+
+<p>
+<img src="https://i.imgur.com/R4txqca.png" height="100%" width="100%" alt="Configuration step"/>
+<p>
+-In the Group Policy Management Editor, expand the following:
+"Computer Configuration" -> "Policies" -> "Windows Settings" -> "Security Settings" -> Account "Policies" -> "Account Lockout Policy".
+
+-Configure the following Account Lockout Policy settings like so:
+1) Account lockout duration: "30 minutes" 
+2) Account lockout threshold: "5 invalid logo attempts"
+3) Allow Administrator account lockout: "Enabled"
+4) Reset account lockout counter after: "10 minutes" 
+
+Step 4 involves configuring the Account Lockout Policy in Group Policy Management to enhance security by defining the conditions under which user accounts will be locked out to prevent brute-force attacks. By setting the "Account lockout duration" to 30 minutes, accounts locked due to too many failed login attempts will automatically unlock after this period. The "Account lockout threshold" of 5 invalid login attempts determines that after five incorrect password entries, the account will be locked. Enabling "Allow Administrator account lockout" applies this security measure to administrator accounts as well. Lastly, setting "Reset account lockout counter after" to 10 minutes means that if a user has a failed login attempt, the counter will reset to zero after 10 minutes of no further failed attempts, preventing accidental lockouts from a few scattered incorrect attempts over a longer duration.
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
+
+
+
+<h3>Step 5:</h3>
+
+<p>
+<img src="" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+
+</p>
+<br />
+
 
 <p>
 <img src="" height="100%" width="100%" alt="Configuration step"/>

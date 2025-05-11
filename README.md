@@ -131,22 +131,24 @@ Step 4 involves configuring the Account Lockout Policy in Group Policy Managemen
 
 
 
-<h3>Step 5:</h3>
+<h3>Step 5: Update the Account Lockout Policy on the Client VM</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/F1mc1ZP.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
-
+-Log back to the Client VM as the Domain Admin user -> open "Command Prompt" as an admin -> run the "gpupdate /force" command.
 </p>
 <br />
 
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/O3iM5ae.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+-To verify the policy, you can use the rsop.msc (Resultant Set of Policy) tool on a client machine to see the applied settings.
 
+This step ensures that the Account Lockout Policy, configured on the Domain Controller, is immediately applied to the Client VM. Running gpupdate /force forces a refresh of all Group Policy settings on the client, overriding the default background refresh interval. Subsequently, using rsop.msc allows us to verify that the Account Lockout Policy settings have been successfully applied to the Client VM by displaying the resultant set of policies for the logged-on user and computer.
 </p>
 <br />
 

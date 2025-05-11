@@ -184,132 +184,75 @@ This step serves to verify that the configured security measure against brute-fo
 
 
 
-<h3>Step 5:</h3>
+<h3>Step 7: Test the Password reset functionality</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://imgur.com/a/KXRnxc4" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+-To reset a password for a Domain user, from within Domain Controller VM -> go back to the Active Directory Users and Computers -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Reset Password" -> enter a new password for the Domain user (take note of it).
 
-</p>
-<br />
+-Attempt to log back in the Client VM as the Domain user with the new password. It should work.
 
+-Log out of the Client VM.
 
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
+This step aims to verify that the password reset mechanism within the Active Directory environment is functioning correctly. By navigating to the Active Directory Users and Computers console on the Domain Controller, locating a specific domain user within the "_EMPLOYEE" OU, and then successfully resetting their password, you confirm that administrative password resets are being applied. Subsequently, logging into the Client VM with the newly set password validates that the changes made on the Domain Controller are being properly propagated and authenticated for domain users.
 </p>
 <br />
 
 
 
 
-<h3>Step 5:</h3>
+<h3>Step 8: Test Disabling and Re-enabling an account</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/HAuWI7H.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
-
-</p>
-<br />
-
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
-</p>
-<br />
-
-
-
-
-<h3>Step 5:</h3>
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
+-To disable an account for a Domain user, from within Domain Controller VM, go back to the Active Directory Users and Computers -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Disable Account".
 </p>
 <br />
 
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/f5eunsH.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+-When you attempt to login the Client VM as the Domain user, you will notice that the account is disabled.
+</p>
+<br />
 
+
+<p>
+<img src="https://i.imgur.com/i7i5G8R.png" height="100%" width="100%" alt="Configuration step"/>
+</p>
+<p>
+-To re-enable the account, go back to the Domain Controller VM as the Domain Admin user  -> navigate to the same location as the one where we disabled the Domain user's account  -> click on "Enable Account".
+
+-You should be able to successfully log back in the Domain user's account on the Client VM.
+
+-Log out of the Client VM.
+
+This step verifies the functionality of disabling and enabling domain user accounts within Active Directory. By disabling a specific user account in the Domain Controller and observing the inability to log in on the Client VM, you confirm that the disable operation is effective. Subsequently, re-enabling the account and successfully logging in validates the enable operation and the restoration of account access. This process ensures the administrator can effectively control user access to the domain resources.
+
+FYI: Disabling the domain user's account will not be disconnect it right away. It will only prevent the user from logging in the next time they attempt to do so. The current session will remain active until the user logs out or the system is restarted.
 </p>
 <br />
 
 
 
 
-<h3>Step 5:</h3>
+<h3>Step 9: Observe the logs</h3>
 
 <p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/bspW3zi.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
+-To observe the logs for the Domain user's login attempts, login to the Client VM as the Domain admin user  -> type the "Windows" key + "R", and run "eventvwr" to access the Event Viewer Console.
 
-</p>
-<br />
+-Expand "Windows Logs" -> right-click on "Security" and select "Find" -> type "Audit Failure" and search for subsequent failed login attempts.
 
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
-</p>
-<br />
-
-
-
-
-<h3>Step 5:</h3>
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
-</p>
-<br />
-
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
-</p>
-<br />
-
-
-
-
-<h3>Step 5:</h3>
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
-</p>
-<br />
-
-
-<p>
-<img src="" height="100%" width="100%" alt="Configuration step"/>
-</p>
-<p>
-
+This step aims to examine the security logs on the Client VM to observe records of failed login attempts by the domain user. By accessing the Event Viewer and filtering for "Audit Failure" entries within the Security logs, you can verify that attempts to log in are being recorded. This confirms that the system is correctly auditing and logging unsuccessful/successful authentication attempts, which is crucial for security monitoring and troubleshooting.
 </p>
 <br />
 

@@ -187,7 +187,7 @@ This step serves to verify that the configured security measure against brute-fo
 <h3>Step 7: Test the Password reset functionality</h3>
 
 <p>
-<img src="https://imgur.com/a/KXRnxc4" height="100%" width="100%" alt="Configuration step"/>
+<img src="https://i.imgur.com/UuCzsjj.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
 -To reset a password for a Domain user, from within Domain Controller VM -> go back to the Active Directory Users and Computers -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Reset Password" -> enter a new password for the Domain user (take note of it).

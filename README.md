@@ -13,6 +13,7 @@ In this guided lab, we will demonstrate how to enable Remote Desktop access for 
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop 
 - PowerShell ISE
+- Group Policy Management
 - Active Directory Users and Computers 
 
 <h2>Operating Systems Used </h2>
@@ -57,11 +58,11 @@ Keep in mind that in a real-world scenario, this step would typically be done ce
 <img src="https://i.imgur.com/eZI1rtJ.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
--Login to the Domain controller VM as the Domain admin user -> navigate to "PowerShell ISE" as an admin -> click on "New Script" (top left) -> save the file on the "Desktop" -> Paste the content of the provided script (see below ↓) -> modify the number of account provisioning from 10000 to 1000 -> click on "Run Script (F5)"; you should see users being created on the PowerShell window.
+-Login to the Domain controller VM as the Domain admin user -> navigate to "PowerShell ISE" as an admin -> click on "New Script" (top left) -> save the file on the "Desktop" -> Paste the content of the provided script (see below ↓) -> modify the number of account provisioning from 10000 to 1000 -> click on "Run Script (F5)"; you should see users being created on the PowerShell window below.
 
 You can find the PowerShell script [here.](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) 
 
--Take note of the password in the script as we will need it in the Step 3.
+-Take note of the user's password in the script as we will need it in the Step 3.
 </p>
 <br />
 
@@ -73,6 +74,7 @@ You can find the PowerShell script [here.](https://github.com/joshmadakor1/AD_PS
 -Go to the "_EMPLOYEE" Organizational Unit (OU) in Active Directory Users and Computers (ADUC) to ensure that domain users are being provisioned. If you don't see the account being created, refresh the OU.
 
 Step 2 involves using a PowerShell script, run with Domain admin privileges on the Domain Controller VM, to automatically create multiple domain user accounts. The purpose is to efficiently generate a batch of users within the Active Directory (_EMPLOYEE OU), which will be used for testing remote access in the following step. Checking ADUC confirms the successful execution of the script and the creation of the new user accounts. 
+
 Do you think that this step would have also worked if we executed it on the Client VM as the Domain Admin user?
 </p>
 <br />
@@ -87,7 +89,7 @@ Do you think that this step would have also worked if we executed it on the Clie
 <img src="https://i.imgur.com/KqwQLRc.png" height="30%" width="60%" alt="Configuration step"/>
 </p>
 <p>
--Attempt to log into the Client VM with one of the accounts (use the password in the script to login).
+-Attempt to log into the Client VM with one of the accounts (use the password from script to login).
 
 Step 3 involves attempting to log into the Client VM using the credentials of one of the non-administrative domain users created in Step 2. The purpose is to verify that the newly provisioned user accounts are valid, can authenticate against the domain, and that the Remote Desktop access configured in Step 1 is working correctly for standard domain users. Successfully logging in confirms the end-to-end functionality of user provisioning and remote access setup. 
 </p>
@@ -102,7 +104,7 @@ Step 3 involves attempting to log into the Client VM using the credentials of on
 <img src="https://i.imgur.com/9p5mDN3.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
--From the Domain Controller VM, type the "Windows key" + "R" and run "gpmc.msc" to the access Group Policy Management Console.
+-From the Domain Controller VM, type the "Windows key" + "R" and run "gpmc.msc" to access Group Policy Management Console.
 
 -In the Group Policy Management Console, expand the following:
 "Forest: mydomain.com" -> "Domains" -> "mydomain.com" -> "Group Policy Object".
@@ -124,7 +126,7 @@ Step 3 involves attempting to log into the Client VM using the credentials of on
 3) Allow Administrator account lockout: "Enabled"
 4) Reset account lockout counter after: "10 minutes" 
 
-Step 4 involves configuring the Account Lockout Policy in Group Policy Management to enhance security by defining the conditions under which user accounts will be locked out to prevent brute-force attacks. By setting the "Account lockout duration" to 30 minutes, accounts locked due to too many failed login attempts will automatically unlock after this period. The "Account lockout threshold" of 5 invalid login attempts determines that after five incorrect password entries, the account will be locked. Enabling "Allow Administrator account lockout" applies this security measure to administrator accounts as well. Lastly, setting "Reset account lockout counter after" to 10 minutes means that if a user has a failed login attempt, the counter will reset to zero after 10 minutes of no further failed attempts, preventing accidental lockouts from a few scattered incorrect attempts over a longer duration.
+Step 4 involves configuring the Account Lockout Policy in Group Policy Management to enhance security by defining the conditions under which user accounts will be locked out to prevent brute-force attacks. By setting the "Account lockout duration" to 30 minutes, accounts locked due to too many failed login attempts will automatically unlock after this period. The "Account lockout threshold" of 5 invalid login attempts determines that after five incorrect password entries, the account will be locked. Enabling "Allow Administrator account lockout" applies this security measure to administrator accounts as well. Lastly, setting "Reset account lockout counter after" 10 minutes means that if a user has a failed login attempt, the counter will reset to zero after 10 minutes of no further failed attempts, preventing accidental lockouts from a few scattered incorrect attempts over a longer duration.
 </p>
 <br />
 
@@ -137,7 +139,7 @@ Step 4 involves configuring the Account Lockout Policy in Group Policy Managemen
 <img src="https://i.imgur.com/F1mc1ZP.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
--Log back to the Client VM as the Domain Admin user -> open "Command Prompt" as an admin -> run the "gpupdate /force" command.
+-Log back in the Client VM as the Domain Admin user -> open "Command Prompt" as an admin -> run the "gpupdate /force" command.
 </p>
 <br />
 
@@ -171,11 +173,11 @@ After 6 failed logins, you should get an error pop-up window indicating that the
 <img src="https://i.imgur.com/3E7IRIk.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
-To unlock the account, log back in the Domain Controller VM as the Domain Admin User -> navigate to the Active Directory Users and Computers Console -> right-click on the "_EMPLOYEE" OU, select "Find" -> enter the name of domain user -> click on "Find Now" -> double-click on the Domain user's name.
+To unlock the account, log back in the Domain Controller VM as the Domain Admin User -> navigate to the ADUC Console -> right-click on the "_EMPLOYEE" OU, select "Find" -> enter the name of the domain user -> click on "Find Now" -> double-click on the Domain user's name.
 
--From within the Domain user's properties, navigate to the "Account" tab and check the box for where it says "Unlock account. This account is currently locked out on this Azure Directory Domain Controller" -> "Apply" -> "OK".
+-From within the Domain user's properties, navigate to the "Account" tab and check the box for "Unlock account. This account is currently locked out on this Azure Directory Domain Controller" -> "Apply" -> "OK".
 
--Attempt to log back in the Client VM as the Domain user. It should be unlocked .
+-Attempt to log back in the Client VM as the Domain user.
 
 Step 6 serves to verify that the configured security measure against brute-force attacks on user accounts is functioning correctly. By intentionally failing to log in multiple times, you should trigger the account lockout, as indicated by an error message. Subsequently, the process of unlocking the account through the Domain Controller demonstrates the administrative control over user access and confirms the lockout policy can be reversed by authorized personnel. Finally, successfully logging in after unlocking confirms the account is no longer restricted.
 </p>
@@ -190,13 +192,13 @@ Step 6 serves to verify that the configured security measure against brute-force
 <img src="https://i.imgur.com/UuCzsjj.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
--To reset a password for a Domain user, from within Domain Controller VM -> go back to the Active Directory Users and Computers -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Reset Password" -> enter a new password for the Domain user (take note of it).
+-To reset a password for a Domain user, from within the Domain Controller VM -> go back to the ADUC Console -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Reset Password" -> enter a new password for the Domain user (take note of it).
 
--Attempt to log back in the Client VM as the Domain user with the new password. It should work.
+-Attempt to log back in the Client VM as the Domain user with the new password. 
 
 -Log out of the Client VM.
 
-Step 7 aims to verify that the password reset mechanism within the Active Directory environment is functioning correctly. By navigating to the Active Directory Users and Computers console on the Domain Controller, locating a specific domain user within the "_EMPLOYEE" OU, and then successfully resetting their password, you confirm that administrative password resets are being applied. Subsequently, logging into the Client VM with the newly set password validates that the changes made on the Domain Controller are being properly propagated and authenticated for domain users.
+Step 7 aims to verify that the password reset mechanism within the Active Directory environment is functioning correctly. By navigating to the ADUC console on the Domain Controller, locating a specific domain user within the "_EMPLOYEE" OU, and then successfully resetting their password, you confirm that administrative password resets are being applied. Subsequently, logging into the Client VM with the newly set password validates that the changes made on the Domain Controller are being properly propagated and authenticated for domain users.
 </p>
 <br />
 
@@ -209,7 +211,7 @@ Step 7 aims to verify that the password reset mechanism within the Active Direct
 <img src="https://i.imgur.com/HAuWI7H.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
--To disable an account for a Domain user, from within Domain Controller VM, go back to the Active Directory Users and Computers -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Disable Account".
+-To disable an account for a Domain user, from within Domain Controller VM, go back to the ADUC Console -> right-click on the "_EMPLOYEE" OU and select "Find" -> enter the name of the Domain user -> click on "Find Now" -> right-click on the Domain user's name -> "Disable Account".
 </p>
 <br />
 
@@ -235,7 +237,7 @@ Step 7 aims to verify that the password reset mechanism within the Active Direct
 
 Step 8 verifies the functionality of disabling and enabling domain user accounts within Active Directory. By disabling a specific user account in the Domain Controller and observing the inability to log in on the Client VM, you confirm that the disable operation is effective. Subsequently, re-enabling the account and successfully logging in validates the enable operation and the restoration of account access. This process ensures the administrator can effectively control user access to the domain resources.
 
-FYI: Disabling the domain user's account will not be disconnect it right away. It will only prevent the user from logging in the next time they attempt to do so. The current session will remain active until the user logs out or the system is restarted.
+FYI: Disabling the domain user's account will not disconnect the current session and disable the account right away. It will only prevent the user from logging in the next time they attempt to do so. The current session will remain active until the user logs out or the system is restarted.
 </p>
 <br />
 
@@ -248,7 +250,7 @@ FYI: Disabling the domain user's account will not be disconnect it right away. I
 <img src="https://i.imgur.com/bspW3zi.png" height="100%" width="100%" alt="Configuration step"/>
 </p>
 <p>
--To observe the logs for the Domain user's login attempts, login to the Client VM as the Domain admin user  -> type the "Windows" key + "R", and run "eventvwr" to access the Event Viewer Console.
+-To observe the logs for the Domain user's login attempts, login to the Client VM as the Domain admin user  -> type the "Windows key" + "R", and run "eventvwr" to access the Event Viewer Console.
 
 -Expand "Windows Logs" -> right-click on "Security" and select "Find" -> type "Audit Failure" and search for subsequent failed login attempts.
 
